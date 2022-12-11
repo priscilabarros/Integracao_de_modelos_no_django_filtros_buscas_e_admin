@@ -1,3 +1,31 @@
+* Exibir o nome do objeto referenciado no site
+
+-  Vá no html do app desejado. EX: receitas -> receita.html
+
+- Vá na area de exibição do objeto desejado e altere pelo resultado da busca no banco de dados. EX: 
+
+<div class="row">
+...
+    <div class="receipe-duration">
+        ...    
+        <h6>Por: {{ receita.pessoa }}</h6>
+
+</div>
+
+----------------------------------------------------------------------------
+
+* Como retornar o nome dos objetos listados de uma chave estrangeira:
+
+- Vá no app pessoas -> model.py
+
+- dentro da classe pessoa referencie o proprio objeto com a palavra self.EX:
+
+class Pessoa(models.Model):
+    ...
+    def __str__(self):
+        return self.nome
+----------------------------------------------------------------------------
+
 * Como ajustar uma chave estrangeira entre duas apps:
 
 - vá na app numero 1. EX: receitas -> models.py
