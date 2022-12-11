@@ -1,3 +1,28 @@
+* Como ajustar uma chave estrangeira entre duas apps:
+
+- vá na app numero 1. EX: receitas -> models.py
+
+- na class de listar os objetos da app 1 vincule a obrigatoriedade da app 2. EX:
+
+from pessoas.models import Pessoa
+
+class Receita(models.Model):
+    pessoa = models.ForeignKey(Pessoa, on_delete=models.CASCADE)    
+    ...
+
+- mande o comando no terminal para migrar essa alteração.EX:
+python manage.py makemigrations
+
+- Nesse caso será necessário passar um valor default para a chave estrangeira
+você pode colocar agora ou depois no pgadmin4. EX:
+''
+
+- Agora pode de fato migra para o banco de dados, mandando o comando no terminal com a venv ativada:
+python manage.py migrate
+ 
+
+----------------------------------------------------------------------------
+
 * Melhorar o nome de um retorno de objeto do banco
 
 - vá em pessoas -> admin.py crie uma classe para listar o nomde 
