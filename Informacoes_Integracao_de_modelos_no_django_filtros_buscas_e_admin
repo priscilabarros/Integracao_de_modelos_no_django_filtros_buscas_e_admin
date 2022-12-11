@@ -1,3 +1,62 @@
+* Melhorar o nome de um retorno de objeto do banco
+
+- vá em pessoas -> admin.py crie uma classe para listar o nomde 
+dos objetos. EX:
+
+class ListandoPessoas(admin.ModelAdmin):
+    list_display = ('id','nome', 'email')
+    list_display_links = ('id','nome')
+    search_fields = ('nome',)
+    list_per_page = 2
+
+- Não esqueça de passar para o admin esta nova classe. EX:
+admin.site.register(Pessoa, ListandoPessoas)
+
+----------------------------------------------------------------------------
+
+* Como criar um novo app pessoas evincular ao app de receitas:
+
+- vai no terminal acessando a venv digite o comando:
+python manage.py startapp pessoas
+
+- uma aplicação será criada para pessoas, agora vá em 
+alurareceita onde estão as configurações da nossa aplicação
+
+- em alurareceita -> settings.py vá até o trecho de INSTALLED_APPS
+EX:
+
+INSTALLED_APPS = {
+...
+
+    'pessoas',
+
+...
+} 
+
+- Agora vamos criar pessoas, vá em pessoas -> models.py crie uma classe que 
+depois irá ser representada lá no banco de dados. EX:
+
+class Pessoa(models.Model):
+    nome = models.CharField(max_length=200)
+    email = models.CharField(max_length=200)
+
+- Agora precisamos registrar o novo modelo de pessoas, vá em pessoas -> admin.py
+e também registre. EX:
+
+from.models import Pessoa
+
+admin.site.register(Pessoa)
+
+- Agora no terminal mandamos um comando para criar a migração de pessoas. EX:
+python manage.py makemigrations
+
+- Agora iremos mandar essa pessoa de fato para o banco de dados. EX:
+python manage.py migrate
+
+
+
+-----------------------------------------------------------------------------
+
 * Como criar uma paginação no django admin 
 
 - Vá em APLICACAO -> receitas -> admin.py:
