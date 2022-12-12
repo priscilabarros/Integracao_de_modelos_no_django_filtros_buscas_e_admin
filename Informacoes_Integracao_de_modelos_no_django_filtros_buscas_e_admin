@@ -1,3 +1,32 @@
+* Como adicionar fotos a cada objeto:
+
+- Altere o modelo com um campo de armazenar imagem.EX:
+receitas -> models.py
+
+class Receita(models.Model):
+    ...
+    foto_receita = models.ImageField(upload_to='fotos/%d/%m/%Y/', blank=True)
+
+- Diga qual o tipo de fotos que irá trabalhar.EX:
+APLICACAO -> settings.py
+#Media
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+MEDIA_URL = '/media/'
+
+- Instale o Pillow para trabalhar com arquivo de imagem. EX:
+pip install pillow
+
+- Vá no terminal com a venv ligada, inicie a migração
+python manage.py makemigrations
+
+- Ainda no terminal, conclua a migração
+python manage.py migrate
+
+
+
+
+
+----------------------------------------------------------------------------
 * Ordenar objetos listados no admin:
 
 - vá na view do app e crie um filtro de ordenação. EX:
