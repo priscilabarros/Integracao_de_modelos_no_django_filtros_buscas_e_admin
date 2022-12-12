@@ -1,3 +1,29 @@
+* Como criar um novo campo booleano nos itens de edição do admin:
+
+- na model do projeto crieum campo de verdadeiro ou falso indicando se este
+item pode ser visualizado ou não. EX: receitas -> models.py
+
+class Receita(models.Model):
+    ...
+    publicada = models.BooleanField(default=False)
+
+- Vá no terminal com a venv ligada, inicie a migração
+python manage.py makemigrations
+
+- Ainda no terminal, conclua a migração
+python manage.py migrate
+
+* Como refletir a alteração do booleano no site:
+
+- va na viewdo projeto. EX: receitas -> view.py
+
+- faça um filtro para as receitas listadas. EX:
+
+def index(request):
+    receitas = Receita.objects.filter(publicada=True)
+    ...
+----------------------------------------------------------------------------
+
 * Exibir o nome do objeto referenciado no site
 
 -  Vá no html do app desejado. EX: receitas -> receita.html
