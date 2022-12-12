@@ -1,3 +1,29 @@
+* Ordenar objetos listados no admin:
+
+- vá na view do app e crie um filtro de ordenação. EX:
+
+receitas -> views.py
+
+def index(request):
+    receitas = Receita.objects.order_by('-date_receita').filter(publicada=True)
+
+----------------------------------------------------------------------------
+* Edição no admin:
+
+- vá no admin.py do app. EX: receitas -> admin.py
+
+- exiba o campo de edição a onde o objeto esta sendo listado. EX:
+
+class ListandoReceitas(admin.ModelAdmin):
+    list_display = ('id',...,'publicada')
+
+- Crie um campo editavel onde o objeto esta sendo listado. EX:
+class ListandoReceitas(admin.ModelAdmin):
+    ...
+    list_editable = ('publicada',)
+
+----------------------------------------------------------------------------
+
 * Como criar um novo campo booleano nos itens de edição do admin:
 
 - na model do projeto crieum campo de verdadeiro ou falso indicando se este
