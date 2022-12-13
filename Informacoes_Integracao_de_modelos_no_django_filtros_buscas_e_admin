@@ -22,10 +22,34 @@ python manage.py makemigrations
 - Ainda no terminal, conclua a migração
 python manage.py migrate
 
+- vá no arquivo de urls do app para indicar a url da foto.EX:
+alurareceita -> urls.py
 
+from django.conf import settings
+from django.conf.urls.static import static
 
+urlpatterns = [
+    ...
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) 
 
+- Vá ao template do seu app, para alterar a index. EX:
+receitas -> template -> index.html
 
+<div class="single-best-receipe-area mb-30">
+    {% if receita.foto_receita == '' %}
+        <img src="{% static 'img/bg-img/foto_receita.png'%}">
+    {% else %}
+        <img src="{{ receita.foto_receita.url }}" alt="">
+    {% endif %}
+
+- Ainda no template, altere o arquivo html. EX:
+receitas -> template -> receita.html
+
+{% if receita.foto_receita == '' %}
+    <img src="{% static 'img/bg-img/foto_receita.png'%}">
+{% else %}
+    <img src="{{ receita.foto_receita.url }}" alt="">
+{% endif %}
 ----------------------------------------------------------------------------
 * Ordenar objetos listados no admin:
 
