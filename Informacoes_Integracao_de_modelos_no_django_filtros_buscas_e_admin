@@ -1,3 +1,42 @@
+* Como criar uma rota:
+
+- va ate o arquivo de url do seu app para adicionar um path de busca. EX:
+receitas -> templates -> urls.py
+
+ulrpatterns = []
+    ...
+    path('busca',views.buscar, name='buscar')
+]
+
+- vá ate as views de seu app. EX:
+receitas -> views.py
+
+def buscar(request):
+    return render(request, 'buscar.html')
+
+- crie um template para sua busca.EX:
+clique com o botão direito na pasta template e adicione um novo arquivo html.
+
+- vá no index do app.EX:
+
+<div class="container">
+    ...
+    <form action="{% url 'buscar' %}>
+        <input type="text" name="buscar" placeholder="O que está procurando...">
+
+- vá na pagina de index copie todo conteudo e cole no novo arquivo em branco buscar.
+
+- no html de buscar faça esse if
+    {% if receitas %}
+    {% for receita in receitas %}
+    ...
+    {% else %}
+        <div class="col-12 col-sm-6 col-lg-4">
+            <p>Receita não encontrada.</p>
+        </div>
+    {% endif %}
+----------------------------------------------------------------------------
+
 * Como adicionar fotos a cada objeto:
 
 - Altere o modelo com um campo de armazenar imagem.EX:
