@@ -1,3 +1,36 @@
+* Resultado de uma busca:
+
+- vá na view do app. EX:
+receitas -> views.py
+
+def buscar(request):
+    lista_receitas = Receita.objects.order_by('-date_receita').filter(publicada=True)
+
+    if 'buscar' in request.GET:
+        nome_a_buscar = request.GET['buscar']
+        if buscar:
+            lista_receitas = lista_receitas.filter(nome_receita__icontains=nome_a_buscar)
+
+    dados = {
+        'receitas' : lista_receitas 
+    }
+
+    return render(request,'buscar.html',dados)
+
+- Altere a url do app. EX:
+receita ->template -> index.html / receita.html
+
+<!-- Search Wrapper -->
+
+<form action="{% url 'buscar' %}">
+                        <input type="text" name="buscar" placeholder="O que está procurando...">
+                        <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                    </form>
+
+
+
+----------------------------------------------------------------------------
+
 * Como criar uma rota:
 
 - va ate o arquivo de url do seu app para adicionar um path de busca. EX:
