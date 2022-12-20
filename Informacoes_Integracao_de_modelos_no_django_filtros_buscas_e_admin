@@ -1,3 +1,26 @@
+* Alterar a resposta da edição da receita
+
+receitas -> models.py  
+class Receita(models.Model):
+...
+def__str__(self):
+    return self.nome_receita
+
+
+* Autorização e usuários:
+
+- crie um usuario no admin.Ex:
+Admin -> usuario -> clique no botão "adicionar usuários"
+dê um nome para o novo usuario e uma senha
+
+- Autorizações do novo usuario:
+Ativo -  tenha credenciais para logar no site
+Membro de equipe - consegue acessar a parte de admin no django
+Super usuario - poder total de edição no site  
+
+- Na parte do admin usuarios podem ser setadas permissões especificas 
+como criar receitas, editar receitas etc..
+
 * Resultado de uma busca:
 
 - vá na view do app. EX:
